@@ -106,7 +106,7 @@ https://pyttsx3.readthedocs.io/en/latest/
 * nsss
 * espeak
 
-Feel free to wrap another text-to-speech engine for use with ``pyttsx3``.
+Feel free to wrap another text-to-speech engine for use with ``pyttsx5``.
 
 ### Project Links :
 

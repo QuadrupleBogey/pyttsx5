@@ -30,10 +30,14 @@ E_REG = {MSSAM: (137.89, 1.11),
 def buildDriver(proxy):
     return SAPI5Driver(proxy)
 
+def __getAllAviableVoices(sapiVoiceService) -> dict:
+    return sapiVoiceService.GetVoices()
 
 class SAPI5Driver(object):
     def __init__(self, proxy):
         self._tts = comtypes.client.CreateObject('SAPI.SPVoice')
+        self.voices = __getAllAviableVoices(self._tts)
+
         # all events
         self._tts.EventInterests = 33790
         self._event_sink = SAPI5DriverEventSink()
@@ -140,6 +144,9 @@ class SAPI5Driver(object):
         while 1:
             pythoncom.PumpWaitingMessages()
             yield
+    
+    def getVoices(self):
+        return self.voices
 
 
 class SAPI5DriverEventSink(object):
